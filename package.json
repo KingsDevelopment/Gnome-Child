@@ -8,20 +8,21 @@
   "author": "Jurien Hamaker <jurien@kings-dev.io>",
   "license": "MIT",
   "scripts": {
-    "start": "tsc --skipLibCheck && npm run start:js",
+    "start": "npm run build && npm run start:js",
     "start:watch": "nodemon",
     "start:js": "node ./dist/index.js",
     "lint": "tslint ./src/**/*.ts",
     "lint:fix": "tslint ./src/**/*.ts --fix",
-    "build": "tsc"
+    "build": "tsc --skipLibCheck"
   },
   "engines": {
     "node": ">11.x"
   },
   "dependencies": {
     "discord.js": "github:discordjs/discord.js#master",
-    "klasa": "github:dirigeants/klasa#master",
+    "klasa": "github:dirigeants/klasa#settings",
     "mongodb": "^3.2.6",
+    "tsconfig-paths": "^3.8.0",
     "typeorm": "^0.2.17"
   },
   "devDependencies": {
@@ -29,7 +30,7 @@
     "nodemon": "^1.18.4",
     "ts-node": "^3.3.0",
     "tslint": "^5.16.0",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.0"
   },
   "keywords": [],
   "nodemonConfig": {
