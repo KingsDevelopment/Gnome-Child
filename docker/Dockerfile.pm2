@@ -1,0 +1,12 @@
+# pm2
+FROM node:11 as pm2
+
+LABEL author="Jurien Hamaker <jurien@kings-dev.io> (https://kings-dev.io)"
+LABEL description="Dockerfile for pm2."
+
+ENV NODE_ENV production
+
+RUN	yarn global add pm2
+
+ENTRYPOINT [ "pm2-runtime" ]
+CMD [ ".pm2rc.json" ]

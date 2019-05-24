@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  bot:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      target: development
+    env_file: ../.env
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../:/opt/app
+  db:
+    image: mongo
+    ports:
+      - "$DB_PORT:27017"

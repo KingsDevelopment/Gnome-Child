@@ -1,0 +1,26 @@
+{
+  "name": "gnome-child",
+  "version": "2.0.0",
+  "description": "Gnome child osrs bot",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "repository": {},
+  "author": "Jurien Hamaker <jurien@kings-dev.io>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts",
+    "build": "tsc"
+  },
+  "engines": {
+    "node": ">11.x"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^7.0.18",
+    "nodemon": "^1.18.4",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2"
+  },
+  "keywords": []
+}
