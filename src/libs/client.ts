@@ -13,7 +13,7 @@ export class Client extends KlasaClient {
 			prefix: process.env.DEFAULT_PREFIX,
 			commandEditing: true,
 			typing: true,
-			owners: process!.env!.OWNER_ID!.split(','),
+			owners: process!.env!.OWNERS!.split(','),
 			createPiecesFolders: false,
 			providers: {
 				default: 'mongodb',
