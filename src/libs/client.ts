@@ -64,10 +64,10 @@ export class Client extends KlasaClient {
 		for (let i: number = 0; i < files.length; i++) {
 			const file = files[i];
 			if (fs.statSync(dir + file).isDirectory()) {
-				filelist = this._findControllers(dir + file + '/', filelist);
+				filelist = this._findControllers(`${dir}${file}/`, filelist);
 			}
 			else {
-				if(file.indexOf(".controller.") === -1) {
+				if (file.indexOf(".controller.") === -1) {
 					continue;
 				}
 

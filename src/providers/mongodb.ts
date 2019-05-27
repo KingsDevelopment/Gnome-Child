@@ -35,10 +35,10 @@ export = class extends Provider {
 	}
 
 	hasTable(table: any) {
-        return this.db.listCollections().toArray()
-            .then(
-                (collections: any) => collections.some((col: any) => col.name === table)
-            );
+		return this.db.listCollections().toArray()
+			.then(
+				(collections: any) => collections.some((col: any) => col.name === table)
+			);
 	}
 
 	createTable(table: any) {
@@ -96,11 +96,11 @@ function flatten(obj: any, path: string = '') {
 	let output: any = {};
 	for (const [key, value] of Object.entries(obj)) {
 		if (isObject(value)) {
-            output = Object.assign(output, flatten(value, path ? `${path}.${key}` : key));
-        }
+			output = Object.assign(output, flatten(value, path ? `${path}.${key}` : key));
+		}
 		else {
-            output[path ? `${path}.${key}` : key] = value;
-        }
+			output[path ? `${path}.${key}` : key] = value;
+		}
 	}
 	return output;
 }
