@@ -13,7 +13,7 @@
     "start:js": "node ./dist/index.js",
     "lint": "tslint ./src/**/*.ts",
     "lint:fix": "tslint ./src/**/*.ts --fix",
-    "build": "tsc --skipLibCheck"
+    "build": "rm -rf dist && tsc --skipLibCheck"
   },
   "engines": {
     "node": ">11.x"

@@ -1,17 +1,17 @@
 import {Entity, Column, ObjectIdColumn, ObjectID} from "typeorm";
 
 @Entity({
-    name: 'users'
+	name: 'users'
 })
 export class UserEntity {
 
-    @ObjectIdColumn()
-    _id: ObjectID;
+	@ObjectIdColumn()
+	_id: ObjectID;
 
-    @Column()
-    id: String;
-    
-    @Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
+	@Column()
+	id: number;
+
+	@Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
 	created: string;
 
 }
