@@ -1,4 +1,5 @@
 import { getConnectionManager, ConnectionManager, Connection } from "typeorm";
+import { ENTITIES } from '../models';
 
 export class Database {
     private _manager: ConnectionManager;
@@ -10,7 +11,7 @@ export class Database {
         port: process.env.DB_PORT,
         database: process.env.DB_NAME,
         useNewUrlParser: true,
-        entities: ["dist/models/**/*.entity.js"]
+        entities: ENTITIES
     };
  
     constructor() {
