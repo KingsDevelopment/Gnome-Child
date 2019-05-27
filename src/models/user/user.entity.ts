@@ -9,7 +9,7 @@ export class UserEntity {
 	_id: ObjectID;
 
 	@Column()
-	id: number;
+	id: string;
 
 	@Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
 	created: string;

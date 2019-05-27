@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
 		"moduleResolution": "node",
 		"module": "commonjs",
     "target": "es2017",
@@ -13,7 +12,8 @@
 		"allowJs": true,
 		"removeComments": true,
 		"experimentalDecorators": true,
-		"outDir": "dist"
+    "outDir": "dist",
+    "noImplicitAny": false
   },
   "include": [
     "src/**/*", "SyncMonitor.ts"

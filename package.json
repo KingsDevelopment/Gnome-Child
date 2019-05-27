@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run build && npm run start:js",
-    "start:watch": "nodemon",
+    "start:watch": "nodemon -L",
     "start:js": "node ./dist/index.js",
     "lint": "tslint ./src/**/*.ts",
     "lint:fix": "tslint ./src/**/*.ts --fix",
