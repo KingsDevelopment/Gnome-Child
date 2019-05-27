@@ -17,7 +17,10 @@ export default class extends Monitor {
 			models.guild.checkExistence(message.guild.id);
 		}
 
-		models.user.checkExistence(message.author.id);
+		models.user.checkExistence(message.author.id, {
+			username: message.author.username,
+			discriminator: message.author.discriminator
+		});
 	}
 
 };

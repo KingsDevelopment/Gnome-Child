@@ -16,4 +16,4 @@ services:
   db:
     image: mongo
     ports:
-      - "$DB_PORT:27017"
+      - "$EXPOSED_DB_PORT:27017"

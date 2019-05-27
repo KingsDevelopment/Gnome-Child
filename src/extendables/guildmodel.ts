@@ -1,14 +1,13 @@
-import { KlasaUser, ExtendableStore } from "klasa";
-import { UserController } from "../models";
+import { ExtendableStore, KlasaGuild } from "klasa";
 
 const { Extendable } = require('klasa');
 
-export default class UserModel extends Extendable {
+export default class GuildModel extends Extendable {
 
 	constructor(store: ExtendableStore, file: string, directory: string) {
 		super(store, file, directory, {
-			appliesTo: [KlasaUser],
-			name: 'UserModel',
+			appliesTo: [KlasaGuild],
+			name: 'GuildModel',
 			enabled: true
 		});
 	}
@@ -18,7 +17,6 @@ export default class UserModel extends Extendable {
 			throw new Error("NO_USER");
 		}
 
-		return this.client.models.user.findById(this.id);
+		return this.client.models.guild.findById(this.id);
 	}
-
 };
