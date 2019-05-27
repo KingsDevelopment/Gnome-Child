@@ -14,7 +14,10 @@ export class UserController {
 		}
 	}
 
-	findByUserId(userId: number) {
-		return this._repository.findOne({ id: userId });
+	findByUserId(userId: number, relations: Array<string> = []) {
+		return this._repository.findOne({
+			where: { id: userId },
+			relations: relations
+		});
 	}
 }

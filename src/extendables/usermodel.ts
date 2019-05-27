@@ -15,7 +15,7 @@ export default class UserModel extends Extendable {
 
 	get model(): Promise<any> {
 		if (!this || !this.id) {
-			return Promise.resolve(null);
+			throw new Error("NO_USER");
 		}
 
 		return this.client.models.user.findByUserId(this.id);
