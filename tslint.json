@@ -1,6 +1,6 @@
 {
   "rules": {
-    "curly": true,
+    "curly": false,
     "indent": [
       true,
       "tabs"
