@@ -89,7 +89,7 @@ export class Client extends KlasaClient {
 	}
 
 	private _extendPermissions() {
-		Client.defaultPermissionLevels
+		this.permissionLevels
 			.add(5, (message: KlasaMessage) => {
 				console.log(message.author)
 				return false;

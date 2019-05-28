@@ -12,14 +12,12 @@ export class UserController extends BaseController {
 		if (!user) {
 			user = new UserEntity();
 			user.id = klasaUser.id.toString();
-			user.created = Date.now();
 		}
 
 		user = {
 			...user,
 			username: klasaUser.username,
-			discriminator: parseInt(klasaUser.discriminator),
-			modified: Date.now()
+			discriminator: parseInt(klasaUser.discriminator)
 		};
 
 		this._repository.save(user);
