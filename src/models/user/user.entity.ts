@@ -1,4 +1,4 @@
-import {Entity, Column, ObjectIdColumn, ObjectID} from "typeorm";
+import {Entity, Column, ObjectIdColumn, ObjectID, CreateDateColumn, UpdateDateColumn} from "typeorm";
 
 @Entity({
 	name: 'users'
@@ -17,10 +17,9 @@ export class UserEntity {
 	@Column()
 	discriminator: number;
 
-	@Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
-	created: number;
+	@CreateDateColumn()
+	created: Date;
 
-	@Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
-	modified: number;
-
+	@UpdateDateColumn()
+	modified: Date;
 }

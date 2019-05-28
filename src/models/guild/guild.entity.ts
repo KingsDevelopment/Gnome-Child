@@ -1,4 +1,4 @@
-import {Entity, Column, ObjectIdColumn, ObjectID} from "typeorm";
+import {Entity, Column, ObjectIdColumn, ObjectID, CreateDateColumn, UpdateDateColumn} from "typeorm";
 
 @Entity({
 	name: 'guilds'
@@ -23,10 +23,9 @@ export class GuildEntity {
 	@Column()
 	disabledCommands: Array<any>;
 
-	@Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
-	created: number;
+	@CreateDateColumn()
+	created: Date;
 
-	@Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
-	modified: number;
-
+	@UpdateDateColumn()
+	modified: Date;
 }

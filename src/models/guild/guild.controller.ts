@@ -11,10 +11,8 @@ export class GuildController extends BaseController {
 		if (!guild) {
 			guild = new GuildEntity();
 			guild.id = guildId;
-			guild.created = Date.now();
 		}
 
-		guild.modified = Date.now();
 		this._repository.save(guild);
 	}
 }
