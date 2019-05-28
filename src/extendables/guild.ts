@@ -2,13 +2,11 @@ import { ExtendableStore, KlasaGuild } from "klasa";
 
 const { Extendable } = require('klasa');
 
-export default class GuildModel extends Extendable {
+export default class extends Extendable {
 
-	constructor(store: ExtendableStore, file: string, directory: string) {
+	constructor(store: ExtendableStore, file: string[], directory: string) {
 		super(store, file, directory, {
-			appliesTo: [KlasaGuild],
-			name: 'GuildModel',
-			enabled: true
+			appliesTo: [KlasaGuild]
 		});
 	}
 
