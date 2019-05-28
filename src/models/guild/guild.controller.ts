@@ -6,12 +6,15 @@ export class GuildController extends BaseController {
 	protected _repository = getMongoRepository(GuildEntity);
 
 	async checkExistence(guildId: string) {
-		const guild = await this._repository.findOne({ id: guildId });
+		let guild = await this._repository.findOne({ id: guildId });
 
 		if (!guild) {
-			await this._repository.insertOne({
-				id: guildId
-			});
+			guild = new GuildEntity();
+			guild.id = guildId;
+			guild.created = Date.now();
 		}
+
+		guild.modified = Date.now();
+		this._repository.save(guild);
 	}
 }

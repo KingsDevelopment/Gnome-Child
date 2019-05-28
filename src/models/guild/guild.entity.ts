@@ -24,6 +24,9 @@ export class GuildEntity {
 	disabledCommands: Array<any>;
 
 	@Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
-	created: string;
+	created: number;
+
+	@Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP' })
+	modified: number;
 
 }
