@@ -26,12 +26,11 @@ export class Client extends KlasaClient {
 			readyMessage: (client: any) => `Successfully initialized. Ready to serve ${client.guilds.size} guilds.`
 		});
 
-		this._db = new Database();
-
 		this._init();
 	}
 
 	private async _init() {
+		this._db = new Database();
 		await this._db.connect();
 
 		this.models = await this._getModel();
