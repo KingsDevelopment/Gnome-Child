@@ -80,8 +80,10 @@ export = class extends Provider {
 		return this.db.collection(table).deleteOne(resolveQuery(id));
 	}
 
-	update(table: any, id: any, doc: any) {
-		return this.db.collection(table).updateOne(resolveQuery(id), { $set: isObject(doc) ? flatten(doc) : parseEngineInput(doc) });
+	update(table: any, id: any, docs: any) {
+		return Promise.all(
+			docs.map(doc => this.db.collection(table).updateOne(resolveQuery(id), { $set: isObject(doc) ? flatten(doc) : parseEngineInput(doc) }))
+		);
 	}
 
 	replace(table: any, id: any, doc: any) {
@@ -94,14 +96,7 @@ const resolveQuery = (query: any) => isObject(query) ? query : { id: query };
 
 function flatten(obj: any, path: string = '') {
 	let output: any = {};
-	for (const [key, value] of Object.entries(obj)) {
-		if (isObject(value)) {
-			output = Object.assign(output, flatten(value, path ? `${path}.${key}` : key));
-		}
-		else {
-			output[path ? `${path}.${key}` : key] = value;
-		}
-	}
+	output[obj.key] = obj.value;
 	return output;
 }
 

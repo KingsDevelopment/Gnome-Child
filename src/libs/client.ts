@@ -1,4 +1,4 @@
-import { Client as KlasaClient } from 'klasa';
+import { Client as KlasaClient, KlasaMessage } from 'klasa';
 import { Database } from './database';
 
 import * as fs from 'fs';
@@ -34,6 +34,10 @@ export class Client extends KlasaClient {
 		await this._db.connect();
 
 		this.models = await this._getModel();
+
+		this._extendSettings();
+		this._extendPermissions();
+		this._listeners();
 
 		await this.login(process.env.TOKEN);
 	}
@@ -75,4 +79,20 @@ export class Client extends KlasaClient {
 		}
 		return filelist;
 	};
+
+	private _listeners() {
+	}
+
+	private _extendSettings() {
+		Client.defaultGuildSchema
+			.add('botModerator', 'Role', { default: null })
+	}
+
+	private _extendPermissions() {
+		Client.defaultPermissionLevels
+			.add(5, (message: KlasaMessage) => {
+				console.log(message.author)
+				return false;
+			}, { fetch: true });
+	}
 };
