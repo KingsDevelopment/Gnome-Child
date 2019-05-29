@@ -5,17 +5,17 @@ export class BaseController {
 	protected _repository: MongoRepository<any>;
 	public readonly name: string;
 
-	findByMongoId(_id: ObjectID, relations: Array<string> = []) {
+	findByMongoId(_id: ObjectID) {
+		return this._repository.findOne(_id);
+	}
+
+	findById(id: number) {
 		return this._repository.findOne({
-			where: { _id: _id },
-			relations: relations
+			where: { id: id }
 		});
 	}
 
-	findById(id: number, relations: Array<string> = []) {
-		return this._repository.findOne({
-			where: { id: id },
-			relations: relations
-		});
+	deleteEntity(entity: any) {
+		return this._repository.delete(entity);
 	}
 }
