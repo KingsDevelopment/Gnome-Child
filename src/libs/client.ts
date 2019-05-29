@@ -42,6 +42,13 @@ export class Client extends KlasaClient {
 		this._listeners();
 
 		await this.login(process.env.TOKEN);
+		await this.user.setPresence({
+			status: 'online',
+			activity: {
+				name: `${process.env.DEFAULT_PREFIX}help in ${this.guilds.size} guilds.`,
+				type: 'LISTENING'
+			}
+		});
 	}
 
 	private async _getModel(): Promise<any> {
