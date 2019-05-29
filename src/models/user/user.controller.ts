@@ -5,6 +5,7 @@ import { KlasaUser } from 'klasa';
 
 export class UserController extends BaseController {
 	protected _repository = getMongoRepository(UserEntity);
+	public readonly name = "user";
 
 	async checkExistence(klasaUser: KlasaUser) {
 		let user = await this._repository.findOne({ id: klasaUser.id.toString() });

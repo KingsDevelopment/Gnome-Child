@@ -3,6 +3,7 @@ import { ObjectID } from 'mongodb';
 
 export class BaseController {
 	protected _repository: MongoRepository<any>;
+	public readonly name: string;
 
 	findByMongoId(_id: ObjectID, relations: Array<string> = []) {
 		return this._repository.findOne({

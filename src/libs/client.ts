@@ -4,6 +4,8 @@ import { Database } from './database';
 import * as fs from 'fs';
 import * as path from 'path';
 
+import { Controllers } from '../models';
+
 export class Client extends KlasaClient {
 	private _db: Database;
 	public models: any;
@@ -43,42 +45,16 @@ export class Client extends KlasaClient {
 	}
 
 	private async _getModel(): Promise<any> {
-		const modelsFolder = path.join(process.cwd(), 'dist/models/');
-		const files = this._findControllers(modelsFolder);
+		const keys: Array<string> = Object.keys(Controllers);
 
-		const modelControllers: any = {};
-		for (const controller of files) {
-			const modelName = controller.split('.')[0].split('/').pop();
-
-			const controllerRequire = require(controller);
-			const keys = Object.keys(controllerRequire);
-			const controllerName = keys[0];
-
-			modelControllers[modelName] = new controllerRequire[controllerName]();
+		const controllers: any = {};
+		for (let key of keys) {
+			const controller = new Controllers[key]();
+			controllers[controller.name] = controller;
 		}
 
-		return modelControllers;
+		return controllers;
 	}
-
-	private _findControllers = (dir: string, filelist?: Array<any>) => {
-		const files = fs.readdirSync(dir);
-		filelist = filelist || [];
-
-		for (let i: number = 0; i < files.length; i++) {
-			const file = files[i];
-			if (fs.statSync(dir + file).isDirectory()) {
-				filelist = this._findControllers(`${dir}${file}/`, filelist);
-			}
-			else {
-				if (file.indexOf(".controller.") === -1) {
-					continue;
-				}
-
-				filelist.push(dir + file);
-			}
-		}
-		return filelist;
-	};
 
 	private _listeners() {
 	}
@@ -90,9 +66,10 @@ export class Client extends KlasaClient {
 
 	private _extendPermissions() {
 		this.permissionLevels
-			.add(5, (message: KlasaMessage) => {
-				console.log(message.author)
-				return false;
-			}, { fetch: true });
+			.add(5,
+				({ member, guild }: KlasaMessage) =>
+					guild.settings.get('botModerator') && member.roles.has(guild.settings.get('botModerator').toString()),
+				{ fetch: true }
+			);
 	}
 };

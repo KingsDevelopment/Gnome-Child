@@ -4,6 +4,7 @@ import { BaseController } from '../../libs/baseController';
 
 export class GuildController extends BaseController {
 	protected _repository = getMongoRepository(GuildEntity);
+	public readonly name = "guild";
 
 	async checkExistence(guildId: string) {
 		let guild = await this._repository.findOne({ id: guildId });

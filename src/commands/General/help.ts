@@ -6,11 +6,11 @@ const PERMISSIONS_RICHDISPLAY = new Permissions([Permissions.FLAGS.MANAGE_MESSAG
 const time = 1000 * 60 * 3;
 
 export default class extends Command {
-    private handlers = new Map();
+	private handlers = new Map();
 
 	public constructor(store: CommandStore, file: string[], directory: string) {
 
-        super(store, file, directory, {
+		super(store, file, directory, {
 			aliases: ['commands', 'cmd', 'cmds'],
 			guarded: true,
 			description: (language) => language.get('COMMAND_HELP_DESCRIPTION'),
@@ -20,7 +20,7 @@ export default class extends Command {
 		this.createCustomResolver('command', (arg, possible, message) => {
 			if (!arg || arg === '') return undefined;
 			return this.client.arguments.get('command').run(arg, possible, message);
-        });
+		});
 	}
 
 	public async run(message: KlasaMessage, [command]: [any]): Promise<any> {
@@ -39,12 +39,12 @@ export default class extends Command {
 			const previousHandler = this.handlers.get(message!.author!.id);
 			if (previousHandler) previousHandler.stop();
 
-            const loading: KlasaMessage = await message.send('Loading Commands...') as KlasaMessage;
+			const loading: KlasaMessage = await message.send('Loading Commands...') as KlasaMessage;
 			const handler = await (await this.buildDisplay(message)).run(loading, {
 				filter: (reaction, user: KlasaUser) => user.id === message!.author!.id,
 				time
-            });
-            loading.edit("Here are the available commands:")
+			});
+			loading.edit("Here are the available commands:")
 
 			handler.on('end', () => this.handlers.delete(message!.author!.id));
 			this.handlers.set(message!.author!.id, handler);
