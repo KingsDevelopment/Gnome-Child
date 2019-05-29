@@ -6,7 +6,7 @@ const { Extendable } = require('klasa');
 // overwrite default flag regex
 const quotes = ['"', "'", '“”', '‘’'];
 const { TextPrompt } = require('klasa');
-TextPrompt.flagRegex = new RegExp(`(?:--|—)(\\w[\\w-]+)(?:=(?:${quotes.map(qu => `[${qu}]((?:[^${qu}\\\\]|\\\\.)*)[${qu}]`).join('|')}|([\\w<>@#&!-].*)))?`, 'g');
+TextPrompt.flagRegex = new RegExp(`(?:--|—)(\\w[\\w-]+)(?:=(?:${quotes.map(qu => `[${qu}]((?:[^${qu}\\\\]|\\\\.)*)[${qu}]`).join('|')}|([^\\s]+)))?`, 'g');
 
 export default class extends Extendable {
 
