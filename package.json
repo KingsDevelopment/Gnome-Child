@@ -13,7 +13,7 @@
     "lint": "tslint ./src/**/*.ts",
     "lint:fix": "tslint ./src/**/*.ts --fix",
     "build": "rm -rf dist && tsc --skipLibCheck",
-    "build:start": "npm run build && npm run start:js"
+    "build:start": "npm run build && npm run start"
   },
   "engines": {
     "node": ">11.x"
